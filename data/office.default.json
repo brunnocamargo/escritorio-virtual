@@ -1,0 +1,207 @@
+{
+  "version": 1,
+  "name": "Escritorio Exato",
+  "rows": [
+    "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn",
+    "njjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjn",
+    "njjjsssssssssssssssssssssssssssssssssssssjjn",
+    "njjjs###w####w####w####w####w####w#######jfn",
+    "njejs#cWWWWWWWcc#cWWWWWWWcc#ccWWWWWWWccc#jjn",
+    "njjjs#cccccccccc#cccccccccc#cccccccccccc#jjn",
+    "njfjswBHHHHHHccx#BHHHHHHccx#BcHHHHHHcccxwjen",
+    "njjjs#cTTTTTTccc#cTTTTTTccc#ccTTTTTTcccc#jjn",
+    "njjjs#cHHHHHHccc#cHHHHHHccc#ccHHHHHHcccc#jjn",
+    "njejs#cccccccccc#cccccccccc#cccccccccccc#jfn",
+    "njjjs#cccccccccc#cccccccccc#cccccccccccc#jjn",
+    "njjjswcccccccccc#cccccccccc#ccccccccccccwjjn",
+    "nfjjs#PccccccccP#PccccccccP#PccccccccccP#jjn",
+    "njjjs#####+##########+###########+#######jen",
+    "njejs#...q...............q..........q...#jjn",
+    "njjjs#~C........P..lllll..P......P....CV#jjn",
+    "njjjsw.............llZll................wjjn",
+    "njjjs#..................................#jfn",
+    "njjjs#..[=]......[=]......[=]..PgSSSSggP#jjn",
+    "njejs#..pHp......pHp......pHp...ggggggg.#jjn",
+    "njjjs#..ppp......ppp......ppp...ggggggg.#jjn",
+    "njfjsw..........................ZgmmggZ.wjen",
+    "njjjs#..[=]......[=]......[=]...ggmmggg.#jjn",
+    "njjjs#..pHp......pHp......pHp...ggggggg.#jjn",
+    "njejs#..ppp......ppp......ppp...gooooog.#jjn",
+    "njjjs#P.....P...........P.....PP.......P#jjn",
+    "nfjjs####w######w####+#w######w######w###jjn",
+    "njjjsssssssssssssssssssssssssssssssssssssjjn",
+    "njjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjn",
+    "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn"
+  ],
+  "rooms": [
+    {
+      "id": "reuniao-a",
+      "name": "Reuniao A",
+      "x1": 6,
+      "y1": 4,
+      "x2": 15,
+      "y2": 12,
+      "color": "#8f90d8",
+      "door": [
+        10,
+        12
+      ],
+      "floor": "c",
+      "kind": "sala"
+    },
+    {
+      "id": "reuniao-b",
+      "name": "Reuniao B",
+      "x1": 17,
+      "y1": 4,
+      "x2": 26,
+      "y2": 12,
+      "color": "#9a9be2",
+      "door": [
+        21,
+        12
+      ],
+      "floor": "c",
+      "kind": "sala"
+    },
+    {
+      "id": "reuniao-c",
+      "name": "Reuniao C",
+      "x1": 28,
+      "y1": 4,
+      "x2": 39,
+      "y2": 12,
+      "color": "#b3b4e6",
+      "door": [
+        33,
+        12
+      ],
+      "floor": "c",
+      "kind": "sala"
+    },
+    {
+      "id": "mesa-1",
+      "name": "Mesa 1",
+      "kind": "privada",
+      "x1": 8,
+      "y1": 18,
+      "x2": 10,
+      "y2": 20,
+      "floor": "p",
+      "color": "#8f90d8",
+      "door": [
+        9,
+        20
+      ]
+    },
+    {
+      "id": "mesa-2",
+      "name": "Mesa 2",
+      "kind": "privada",
+      "x1": 17,
+      "y1": 18,
+      "x2": 19,
+      "y2": 20,
+      "floor": "p",
+      "color": "#8f90d8",
+      "door": [
+        18,
+        20
+      ]
+    },
+    {
+      "id": "mesa-3",
+      "name": "Mesa 3",
+      "kind": "privada",
+      "x1": 26,
+      "y1": 18,
+      "x2": 28,
+      "y2": 20,
+      "floor": "p",
+      "color": "#8f90d8",
+      "door": [
+        27,
+        20
+      ]
+    },
+    {
+      "id": "mesa-4",
+      "name": "Mesa 4",
+      "kind": "privada",
+      "x1": 8,
+      "y1": 22,
+      "x2": 10,
+      "y2": 24,
+      "floor": "p",
+      "color": "#8f90d8",
+      "door": [
+        9,
+        24
+      ]
+    },
+    {
+      "id": "mesa-5",
+      "name": "Mesa 5",
+      "kind": "privada",
+      "x1": 17,
+      "y1": 22,
+      "x2": 19,
+      "y2": 24,
+      "floor": "p",
+      "color": "#8f90d8",
+      "door": [
+        18,
+        24
+      ]
+    },
+    {
+      "id": "mesa-6",
+      "name": "Mesa 6",
+      "kind": "privada",
+      "x1": 26,
+      "y1": 22,
+      "x2": 28,
+      "y2": 24,
+      "floor": "p",
+      "color": "#8f90d8",
+      "door": [
+        27,
+        24
+      ]
+    }
+  ],
+  "spawns": [
+    [
+      21,
+      14
+    ],
+    [
+      20,
+      14
+    ],
+    [
+      22,
+      14
+    ],
+    [
+      14,
+      16
+    ],
+    [
+      28,
+      16
+    ],
+    [
+      21,
+      20
+    ],
+    [
+      12,
+      21
+    ],
+    [
+      21,
+      25
+    ]
+  ]
+}

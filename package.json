@@ -1,0 +1,27 @@
+{
+  "name": "escritorio-virtual",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Escritorio virtual em pixel art estilo Gather: login com personagem salvo, editor de mapa e chamadas de audio/video por proximidade (WebRTC).",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node scripts/smoke-test.js && node scripts/check-auth.js && node scripts/check-editor.js",
+    "check": "node scripts/check-map.js && node scripts/check-client.js",
+    "check:web": "node scripts/check-lobby.js",
+    "build:map": "node scripts/build-default-map.js",
+    "preview": "node scripts/render-preview.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "socket.io": "^4.7.5"
+  },
+  "devDependencies": {
+    "jsdom": "^30.0.1",
+    "socket.io-client": "^4.8.3"
+  }
+}

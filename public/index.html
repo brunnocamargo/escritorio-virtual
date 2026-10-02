@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>Escritorio Virtual</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='%23151a26'/><rect x='4' y='3' width='8' height='5' fill='%234f8ef7'/><rect x='5' y='9' width='6' height='4' fill='%23f2c49b'/></svg>" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ------------------------------------------------------------ LOGIN -->
+  <div id="login" class="overlay">
+    <div class="auth-card">
+      <div class="auth-art">
+        <canvas id="authPreview" width="180" height="240" aria-hidden="true"></canvas>
+        <div class="auth-art-text">
+          <h1>Escritorio Virtual</h1>
+          <p>Ande pelo mapa, chegue perto das pessoas e a chamada comeca sozinha.</p>
+        </div>
+      </div>
+
+      <div class="auth-form">
+        <div class="auth-tabs">
+          <button class="auth-tab active" data-mode="entrar">Entrar</button>
+          <button class="auth-tab" data-mode="criar">Criar conta</button>
+        </div>
+
+        <label class="field">
+          <span>Usuario ou e-mail</span>
+          <input id="authUser" type="text" maxlength="60" autocomplete="username"
+                 placeholder="ex.: teste@teste.com" />
+        </label>
+
+        <label class="field">
+          <span>Senha</span>
+          <input id="authPass" type="password" maxlength="60" autocomplete="current-password"
+                 placeholder="apenas letras e numeros" />
+        </label>
+
+        <label class="field" id="authPass2Field" hidden>
+          <span>Repita a senha</span>
+          <input id="authPass2" type="password" maxlength="60" autocomplete="new-password" />
+        </label>
+
+        <button id="authSubmit" class="primary">Entrar</button>
+        <p id="authError" class="error" hidden></p>
+
+        <div class="auth-foot">
+          <button id="guestBtn" class="linklike">entrar como visitante</button>
+          <span class="auth-note">seu personagem fica salvo na conta</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ------------------------------------------------- CRIADOR DE PERSONAGEM -->
+  <div id="creator" class="overlay" hidden>
+    <div class="creator-card">
+      <header class="creator-head">
+        <div>
+          <h1>Seu personagem</h1>
+          <p id="creatorWho">Monte o visual e entre no escritorio.</p>
+        </div>
+        <button id="logoutBtn" class="linklike">trocar de conta</button>
+      </header>
+
+      <div class="creator-body">
+        <div class="creator-stage">
+          <canvas id="creatorPreview" width="216" height="288"></canvas>
+          <div class="stage-actions">
+            <button id="spinBtn" class="ghost-btn" title="Girar o personagem">Girar</button>
+            <button id="randomBtn" class="ghost-btn" title="Sortear um visual">Surpresa</button>
+          </div>
+        </div>
+
+        <div class="creator-options">
+          <div class="cat-tabs" id="catTabs"></div>
+          <div class="cat-body" id="catBody"></div>
+        </div>
+
+        <div class="creator-side">
+          <label class="field">
+            <span>Como querem te chamar</span>
+            <input id="nameInput" type="text" maxlength="20" autocomplete="off" />
+          </label>
+          <label class="field">
+            <span>Status (opcional)</span>
+            <input id="statusInput" type="text" maxlength="40"
+                   placeholder="ex.: focado ate as 15h" autocomplete="off" />
+          </label>
+
+          <div class="toggles">
+            <label><input id="micOnJoin" type="checkbox" checked /> Entrar com microfone</label>
+            <label><input id="camOnJoin" type="checkbox" checked /> Entrar com camera</label>
+          </div>
+
+          <div class="history-box" id="historyBox" hidden>
+            <div class="history-head">
+              <h4>Visuais anteriores</h4>
+              <button id="clearHistoryBtn" class="linklike">limpar</button>
+            </div>
+            <ul id="historyList" class="history-list"></ul>
+          </div>
+
+          <button id="joinBtn" class="primary">Entrar no escritorio</button>
+          <p id="lobbyError" class="error" hidden></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- -------------------------------------------------------------- APP -->
+  <div id="app" hidden>
+    <canvas id="stage"></canvas>
+
+    <div id="topbar">
+      <div class="badge" id="roomBadge">
+        <span class="dot" id="roomDot"></span>
+        <span id="roomName">Open Space</span>
+      </div>
+      <div class="badge" id="peopleBadge" title="Pessoas conectadas">
+        <span id="peopleCount">1</span> online
+      </div>
+      <div class="badge subtle" id="callBadge" title="Pessoas na sua chamada agora">
+        <span id="callCount">0</span> na chamada
+      </div>
+    </div>
+
+    <aside id="media">
+      <div id="videoGrid"></div>
+    </aside>
+
+    <section id="sidepanel">
+      <div class="panel-tabs">
+        <button class="tab active" data-tab="chat">Chat</button>
+        <button class="tab" data-tab="people">Pessoas</button>
+        <button class="tab" data-tab="map">Mapa</button>
+      </div>
+
+      <div class="tab-body" data-panel="chat">
+        <div id="messages" aria-live="polite"></div>
+        <form id="chatForm">
+          <select id="chatScope" title="Alcance da mensagem">
+            <option value="global">Todos</option>
+            <option value="room">Minha sala</option>
+          </select>
+          <input id="chatInput" type="text" maxlength="400" placeholder="Escreva algo..." autocomplete="off" />
+          <button type="submit">Enviar</button>
+        </form>
+      </div>
+
+      <div class="tab-body" data-panel="people" hidden>
+        <ul id="peopleList"></ul>
+      </div>
+
+      <div class="tab-body" data-panel="map" hidden>
+        <canvas id="minimap" width="240" height="150"></canvas>
+        <ul id="roomList" class="room-list"></ul>
+        <p class="hint">Clique em uma sala para ser teleportado ate a porta dela.</p>
+      </div>
+    </section>
+
+    <div id="controls">
+      <button id="micBtn" class="ctrl" title="Microfone (M)">Mic</button>
+      <button id="camBtn" class="ctrl" title="Camera (C)">Cam</button>
+      <button id="screenBtn" class="ctrl" title="Compartilhar tela">Tela</button>
+      <button id="panelBtn" class="ctrl" title="Mostrar / esconder painel (Tab)">Painel</button>
+      <button id="editBtn" class="ctrl" title="Centro de configuracao: editar o mapa (E)">Editar</button>
+      <button id="leaveBtn" class="ctrl danger" title="Sair">Sair</button>
+    </div>
+
+    <div id="hintbar">
+      <kbd>W A S D</kbd> ou <kbd>setas</kbd> para andar &middot;
+      <kbd>Enter</kbd> chat &middot; <kbd>M</kbd> mic &middot; <kbd>C</kbd> camera
+    </div>
+
+    <div id="toast" hidden></div>
+  </div>
+
+
+  <!-- --------------------------------------------- CENTRO DE CONFIGURACAO -->
+  <div id="editor" hidden>
+    <header class="ed-top">
+      <strong class="ed-title">Centro de configuracao</strong>
+      <label class="ed-name">Planta
+        <input id="edMapName" type="text" maxlength="40" />
+      </label>
+      <span id="edStatus" class="ed-status"></span>
+      <div class="ed-actions">
+        <button id="edUndo" class="ed-btn" title="Desfazer (Ctrl+Z)">Desfazer</button>
+        <button id="edRedo" class="ed-btn" title="Refazer (Ctrl+Shift+Z)">Refazer</button>
+        <button id="edReset" class="ed-btn">Restaurar padrao</button>
+        <button id="edClose" class="ed-btn">Fechar</button>
+        <button id="edSave" class="ed-btn save">Publicar para todos</button>
+      </div>
+    </header>
+
+    <div class="ed-body">
+      <aside class="ed-left">
+        <h4>Ferramentas</h4>
+        <div id="edTools" class="ed-tools"></div>
+        <h4>Pecas</h4>
+        <div id="edPalette" class="ed-palette"></div>
+      </aside>
+
+      <div class="ed-stage">
+        <canvas id="edCanvas"></canvas>
+        <div id="edHint" class="ed-hint"></div>
+      </div>
+
+      <aside class="ed-right">
+        <section>
+          <h4>Tamanho do mapa</h4>
+          <div class="ed-size">
+            <label>Largura <input id="edW" type="number" min="16" max="140" /></label>
+            <label>Altura <input id="edH" type="number" min="12" max="100" /></label>
+            <button id="edApplySize" class="ed-btn">Aplicar</button>
+          </div>
+        </section>
+
+        <section>
+          <h4>Salas <span class="ed-count" id="edRoomCount"></span></h4>
+          <p class="ed-tip">Use a ferramenta <b>Sala</b> e arraste no mapa para criar uma.</p>
+          <ul id="edRooms" class="ed-rooms"></ul>
+          <div id="edRoomForm" class="ed-form" hidden>
+            <label>Nome <input id="edRoomName" type="text" maxlength="30" /></label>
+            <label>Tipo
+              <select id="edRoomKind">
+                <option value="sala">Sala fechada</option>
+                <option value="privada">Area privada (sem paredes)</option>
+              </select>
+            </label>
+            <label>Piso <select id="edRoomFloor"></select></label>
+            <label>Cor <input id="edRoomColor" type="color" /></label>
+            <div class="ed-form-actions">
+              <button id="edRoomDoor" class="ed-btn">Mover chegada</button>
+              <button id="edRoomDelete" class="ed-btn danger">Apagar sala</button>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h4>Entradas <span class="ed-count" id="edSpawnCount"></span></h4>
+          <p class="ed-tip">Ferramenta <b>Entrada</b>: clique para adicionar, clique de novo para remover.</p>
+        </section>
+
+        <section>
+          <h4>Verificacao</h4>
+          <ul id="edProblems" class="ed-problems"></ul>
+        </section>
+      </aside>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="js/tiles.js"></script>
+  <script src="js/mapcheck.js"></script>
+  <script src="js/world.js"></script>
+  <script src="js/avatar.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/sprites.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/creator.js"></script>
+  <script src="js/rtc.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/editor.js"></script>
+  <script src="js/net.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
