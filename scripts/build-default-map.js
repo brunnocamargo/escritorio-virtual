@@ -153,7 +153,7 @@ scatter([[9, 14], [25, 14], [36, 14]], 'q');
 
 const map = {
   version: 1,
-  name: 'Escritorio Exato',
+  name: 'Escritorio Virtual',
   rows: grid.map((row) => row.join('')),
   rooms: SALAS.map(({ porta, ...sala }) => sala).concat(ESTACOES),
   spawns: [
